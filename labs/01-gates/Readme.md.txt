@@ -14,7 +14,7 @@ https://www.edaplayground.com/x/s5fD
 
 ```
 
-![Simulace demorgana ](C:\Users\kubah\OneDrive\Plocha\DE1\Digital-electronics-1\labs\01-gates\images\demorgan.png)
+![Simulace demorgana](Images/demorgan.png)
 
 #####pravdivostní nabulka pro f_o
 
