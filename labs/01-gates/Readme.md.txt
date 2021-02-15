@@ -7,4 +7,4 @@ https://www.edaplayground.com/x/8PYc
 
 ```
 
-![Simulace demorgana ](Images/pokus.png)
+![Simulace demorgana ](images/pokus.png)
