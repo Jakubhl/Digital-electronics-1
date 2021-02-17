@@ -138,7 +138,7 @@ end architecture testbench;
 ```
 
 #### Výpis z konzole:
-[2021-02-17 14:39:38 EST] ghdl -i design.vhd testbench.vhd  && ghdl -m  tb_comparator_2bit && ghdl -r  tb_comparator_2bit   --vcd=dump.vcd && sed -i 's/^U/X/g; s/^-/X/g; s/^H/1/g; s/^L/0/g' dump.vcd 
+"[2021-02-17 14:39:38 EST] ghdl -i design.vhd testbench.vhd  && ghdl -m  tb_comparator_2bit && ghdl -r  tb_comparator_2bit   --vcd=dump.vcd && sed -i 's/^U/X/g; s/^-/X/g; s/^H/1/g; s/^L/0/g' dump.vcd 
 analyze design.vhd
 analyze testbench.vhd
 elaborate tb_comparator_2bit
@@ -148,7 +148,7 @@ testbench.vhd:81:9:@1600ns:(report note): Stimulus process finished
 Finding VCD file...
 ./dump.vcd
 [2021-02-17 14:39:38 EST] Opening EPWave...
-Done
+Done"
 
 ##### Odkaz na EDA playground s chybou:
 https://www.edaplayground.com/x/LM2U
