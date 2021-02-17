@@ -20,7 +20,7 @@
 
 ## obrázek SoP a PoS pro equals a less
 
-![Karnaughovy mapy](images/mapa_de_cv2.png)
+![Karnaughovy mapy](images/mapa_de_cv2.jpg)
 
 
 ### kód pro 4-bit binary comparator
