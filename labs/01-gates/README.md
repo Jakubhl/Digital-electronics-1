@@ -2,7 +2,7 @@ napis 1
 
 https://www.edaplayground.com/x/s5fD
 
-####De morgans laws simulation
+#### De morgans laws simulation
 ```vhdl
  f_o  <= ((not b_i) and a_i) or ((not c_i) and (not b_i));
     fnand_o <= not(a_i and b_i and c_i);
@@ -16,7 +16,7 @@ https://www.edaplayground.com/x/s5fD
 
 ![Simulace demorgana](images/demorgan.png)
 
-#####pravdivostní nabulka pro f_o
+##### pravdivostní nabulka pro f_o
 
 | **c** | **b** |**a** | **f(c,b,a)** |
 | :-: | :-: | :-: | :-: |
