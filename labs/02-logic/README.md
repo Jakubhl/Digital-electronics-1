@@ -18,3 +18,6 @@
 | 14 | 1 1 | 1 0 | 1 | 0 | 0 |
 | 15 | 1 1 | 1 1 | 0 | 1 | 0 |
 
+## obrázek pravdivostních tabulek SoP a PoS pro equals a less
+
+![Simulace demorgana](images/mapa_de_cv2.png)
