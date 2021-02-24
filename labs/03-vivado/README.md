@@ -1,7 +1,7 @@
 # cvičení 3
 ### 1)
 
-![piny desky](n4r.png)
+![piny desky](images/n4r.png)
 
 ### 2)
 #### mux_2bit_4to1 kod:
@@ -162,9 +162,9 @@ set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { f_o[1]
 ```
 
 #### simulace 2-bit comparator:
-![comparator](comp.png)
+![comparator](images/comp.png)
 #### simulace 2-bit mux 4to1:
-![multiplexer](mux.png)
+![multiplexer](images/mux.png)
 
 ### Tutorial
 #### project creation:
