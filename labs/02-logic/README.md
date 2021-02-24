@@ -20,7 +20,7 @@
 
 ## obrázek SoP a PoS pro equals a less
 
-![Karnaughovy mapy](images/mapa_de_cv2.png)
+![Karnaughovy mapy](images/mapa_de_cv2.jpg)
 
 
 ### kód pro 4-bit binary comparator
@@ -138,6 +138,7 @@ end architecture testbench;
 ```
 
 #### Výpis z konzole:
+```
 [2021-02-17 14:39:38 EST] ghdl -i design.vhd testbench.vhd  && ghdl -m  tb_comparator_2bit && ghdl -r  tb_comparator_2bit   --vcd=dump.vcd && sed -i 's/^U/X/g; s/^-/X/g; s/^H/1/g; s/^L/0/g' dump.vcd 
 analyze design.vhd
 analyze testbench.vhd
@@ -149,6 +150,7 @@ Finding VCD file...
 ./dump.vcd
 [2021-02-17 14:39:38 EST] Opening EPWave...
 Done
+```
 
 ##### Odkaz na EDA playground s chybou:
 https://www.edaplayground.com/x/LM2U
