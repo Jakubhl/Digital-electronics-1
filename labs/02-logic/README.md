@@ -151,6 +151,9 @@ Finding VCD file...
 [2021-02-17 14:39:38 EST] Opening EPWave...
 Done
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7635a39688280830d3589e1b111183e19a9b871a
 ##### Odkaz na EDA playground s chybou:
 https://www.edaplayground.com/x/LM2U
