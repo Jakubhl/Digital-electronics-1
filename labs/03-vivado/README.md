@@ -3,6 +3,7 @@
 
 ![piny desky](images/n4r.png)
 
+https://www.google.com/url?sa=i&url=https%3A%2F%2Freference.digilentinc.com%2Freference%2Fprogrammable-logic%2Fnexys-a7%2Freference-manual&psig=AOvVaw0j7QFZ3_8Emyjo8Fb9K3vK&ust=1614336228202000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMCDy53thO8CFQAAAAAdAAAAABAE
 ### 2)
 #### mux_2bit_4to1 kod:
 
