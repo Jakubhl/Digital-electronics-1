@@ -38,7 +38,6 @@ architecture testbench of tb_hex_7seg is
     -- Local signals
     signal s_hex       : std_logic_vector(4 - 1 downto 0);
     signal s_seg       : std_logic_vector(7 - 1 downto 0);
-    
 
 begin
     -- Connecting testbench signals with comparator_2bit entity (Unit Under Test)
@@ -56,23 +55,24 @@ begin
         -- Report a note at the begining of stimulus process
         report "Stimulus process started" severity note;
 
-        s_hex <= "0000"; wait for 100 ns;
-        s_hex <= "0001"; wait for 100 ns;
-        s_hex <= "0010"; wait for 100 ns;
-        s_hex <= "0011"; wait for 100 ns;
-        s_hex <= "0100"; wait for 100 ns;
-        s_hex <= "0101"; wait for 100 ns;
-        s_hex <= "0110"; wait for 100 ns;
-        s_hex <= "0111"; wait for 100 ns;
-        s_hex <= "1000"; wait for 100 ns;
-        s_hex <= "1001"; wait for 100 ns;
-        s_hex <= "1010"; wait for 100 ns;
-        s_hex <= "1011"; wait for 100 ns;
-        s_hex <= "1100"; wait for 100 ns;
-        s_hex <= "1101"; wait for 100 ns;
-        s_hex <= "1110"; wait for 100 ns;
-        s_hex <= "1111"; wait for 100 ns;
+--        s_hex <= "0000"; wait for 100 ns;
+--        s_hex <= "0001"; wait for 100 ns;
+--        s_hex <= "0010"; wait for 100 ns;
+--        s_hex <= "0011"; wait for 100 ns;
+--        s_hex <= "0100"; wait for 100 ns;
+--        s_hex <= "0101"; wait for 100 ns;
+--        s_hex <= "0110"; wait for 100 ns;
+--        s_hex <= "0111"; wait for 100 ns;
+--        s_hex <= "1000"; wait for 100 ns;
+--        s_hex <= "1001"; wait for 100 ns;
+--        s_hex <= "1010"; wait for 100 ns;
+--        s_hex <= "1011"; wait for 100 ns;
+--        s_hex <= "1100"; wait for 100 ns;
+--        s_hex <= "1101"; wait for 100 ns;
+--        s_hex <= "1110"; wait for 100 ns;
+--        s_hex <= "1111"; wait for 100 ns;
         
+          
         
       
 
