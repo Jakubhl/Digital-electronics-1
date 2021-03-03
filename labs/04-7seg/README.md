@@ -159,7 +159,7 @@ hex2seg : entity work.hex_7seg
     else '0';
     
     -- Turn LED(5) on if input value is greater than "1001"
-    LED(5) <= '1' when (SW> "1001") 
+    LED(5) <= '1' when (SW = "1010" or SW= "1011" or SW="1100" or SW="1101" or SW="1110"or SW="1111") 
     else '0';
     
     -- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
