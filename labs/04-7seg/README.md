@@ -1,7 +1,7 @@
 # cvičení 4
 ### 1)
 
-![7 segmenty](images\segmenty.png)
+![7 segmenty](segmenty.png)
 
 ###pravdivostní tabulka:
 | **Hex** | **Inputs** | **A** | **B** | **C** | **D** | **E** | **F** | **G** |
@@ -107,7 +107,7 @@ end architecture behavioral;
 ```
 #### screenshot:
 
-![time waveforms of 7seg decoder](images\prubeh.png)
+![time waveforms of 7seg decoder](prubeh.png)
 
 #### top instance:
 ```vhdl
@@ -148,4 +148,4 @@ hex2seg : entity work.hex_7seg
 
 
 #### screen2:
-![comparator](images\prubeh2.png)
+![comparator](prubeh2.png)
