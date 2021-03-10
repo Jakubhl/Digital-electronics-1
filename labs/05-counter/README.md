@@ -13,22 +13,34 @@
    | 1&nbsp;sec | 100 000 000 | `x"5F5_E100"` | `b"0101_1111_0101_1110_0001_0000_0000"` |
    
 ### 2)
-#### process cnt_up_down:
+#### process p_cnt_up_down:
 ```vhdl
- uut_cnt : entity work.cnt_up_down
-        generic map(
-            g_CNT_WIDTH  => c_CNT_WIDTH
-        )
-        port map(
-            clk      => s_clk_100MHz,
-            reset    => s_reset,
-            en_i     => s_en,
-            cnt_up_i => s_cnt_up,
-            cnt_o    => s_cnt
-        );
+  p_cnt_up_down : process(clk)
+    begin
+        if rising_edge(clk) then
+        
+            if (reset = '1') then               -- Synchronous reset
+                s_cnt_local <= (others => '0'); -- Clear all bits
+
+            elsif (en_i = '1') then       -- Test if counter is enabled
+
+            
+                -- TEST COUNTER DIRECTION HERE
+               if(cnt_up_i = '1') then
+            
+               s_cnt_local <= s_cnt_local + 1;
+               
+               else
+               
+               s_cnt_local <= s_cnt_local - 1;
+               end if;
+
+            end if;
+        end if;
+    end process p_cnt_up_down;
 
 ```
-#### stimulus process tb_p_cnt_up_down:
+#### stimulus process p_tb_cnt_up_down:
 ```vhdl
 p_stimulus : process
     begin
@@ -53,7 +65,9 @@ p_stimulus : process
 ```
 
 #### Screenshot with simulated time waveforms:
-![](images/counter1.png)
+![](images/sim1.png)
+![](images/sim2.png)
+![](images/sim3.png)
 
 ### 3)
 #### top.vhd with all instantiations for the 4-bit bidirectional counter:
@@ -107,4 +121,5 @@ p_stimulus : process
 ```
 
 #### Image of the top layer including both counters:
-![](images/counter2.png)
+![](images/blok2.png)
+![](images/blok1.png)
