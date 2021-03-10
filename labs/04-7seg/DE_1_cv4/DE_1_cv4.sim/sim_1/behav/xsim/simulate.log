@@ -1,0 +1,6 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+Note: Stimulus process started
+Time: 0 ps  Iteration: 0  Process: /tb_top2/p_stimulus  File: C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/04-7seg/DE_1_cv4/DE_1_cv4.srcs/sim_1/new/tb_top2.vhd
+Note: Stimulus process finished
+Time: 1600 ns  Iteration: 0  Process: /tb_top2/p_stimulus  File: C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/04-7seg/DE_1_cv4/DE_1_cv4.srcs/sim_1/new/tb_top2.vhd
