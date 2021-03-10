@@ -1,7 +1,7 @@
 # cvičení 5
 ### 1)
 
-![7 segmenty](images/buttons.png)
+![push buttons](images/buttons.png)
 
 | **Time interval** | **Number of clk periods** | **Number of clk periods in hex** | **Number of clk periods in binary** |
    | :-: | :-: | :-: | :-: |
@@ -13,3 +13,26 @@
    | 1&nbsp;sec | 100 000 000 | `x"5F5_E100"` | `b"0101_1111_0101_1110_0001_0000_0000"` |
    
 ### 2)
+#### process p_cnt_up_down:
+```vhdl
+
+
+```
+#### stimulus process tb_p_cnt_up_down:
+```vhdl
+
+
+```
+
+#### Screenshot with simulated time waveforms:
+![](images/counter1.png)
+
+### 3)
+#### top.vhd with all instantiations for the 4-bit bidirectional counter:
+```vhdl
+
+
+```
+
+#### Image of the top layer including both counters:
+![](images/counter2.png)
