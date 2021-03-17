@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Mar 17 17:25:12 2021
+# Process ID: 10376
+# Current directory: C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/06-display_driver/display_driver/display_driver.runs/synth_1
+# Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/06-display_driver/display_driver/display_driver.runs/synth_1/top.vds
+# Journal file: C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/06-display_driver/display_driver/display_driver.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace

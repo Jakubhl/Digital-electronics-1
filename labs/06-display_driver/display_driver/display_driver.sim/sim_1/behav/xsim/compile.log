@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/06-display_driver/display_driver/display_driver.srcs/sources_1/new/driver_7seg_4digits.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'driver_7seg_4digits'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/kubah/OneDrive/Plocha/DE1/Digital-electronics-1/labs/06-display_driver/display_driver/display_driver.srcs/sim_1/new/tb_driver_7seg_4digits.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_driver_7seg_4digits'
