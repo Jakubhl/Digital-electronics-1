@@ -121,5 +121,5 @@ p_stimulus : process
 ```
 
 #### Image of the top layer including both counters:
-![](images/blok2.png)
-![](images/blok1.png)
+![](images/blok2.jpg)
+![](images/blok1.jpg)
