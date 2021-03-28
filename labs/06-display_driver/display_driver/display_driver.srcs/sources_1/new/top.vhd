@@ -94,3 +94,5 @@ begin
 
     -- Disconnect the top four digits of the 7-segment display
     AN(7 downto 4) <= b"1111";
+    
+end architecture Behavioral;
