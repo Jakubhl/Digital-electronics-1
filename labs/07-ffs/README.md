@@ -253,7 +253,7 @@ begin
     wait;
 end process p_stimulus;
 ```
-####Screenshot with simulated time waveforms:
+#### Screenshot with simulated time waveforms:
 ![d_ff_arst](images/screen1.png)
 ![d_ff_rst](images/d_ff.png)
 ![jk_ff](images/jk.png)
