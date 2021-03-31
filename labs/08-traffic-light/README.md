@@ -1,130 +1,235 @@
 # cvičení 8
-### 1)
+### 1) 
 | **Input P** | `0` | `0` | `1` | `1` | `0` | `1` | `0` | `1` | `1` | `1` | `1` | `0` | `0` | `1` | `1` | `1` |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| **Clock** | ![rising](images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) | ![rising](Images/eq_uparrow.png) |
+| **Clock** | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) | ![rising](images/eq_uparrow.png) |
 | **State** | A | A | B | C | C | D | A | B | C | D | B | B | B | C | D | B |
 | **Output R** | `0` | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 
-![push buttons](images/buttons.png)
+Figure with connection of RGB LEDs on Nexys A7 board
 
-| **Time interval** | **Number of clk periods** | **Number of clk periods in hex** | **Number of clk periods in binary** |
-   | :-: | :-: | :-: | :-: |
-   | 2&nbsp;ms | 200 000 | `x"3_0d40"` | `b"0011_0000_1101_0100_0000"` |
-   | 4&nbsp;ms | 400 000 | `x"6_1d80"` | `b"0110_0001_1010_1000_0000"` |
-   | 10&nbsp;ms | 1 000 000 | `x"f_4240"` | `b"1111_0100_0010_0100_0000"` |
-   | 250&nbsp;ms | 25 000 000 | `x"17d_7840"` | `b"0001_0111_1101_0111_1000_0100_0000"` |
-   | 500&nbsp;ms | 50 000 000 | `x"2fa_f080"` | `b"0010_1111_1010_1111_0000_1000_0000"` |
-   | 1&nbsp;sec | 100 000 000 | `x"5F5_E100"` | `b"0101_1111_0101_1110_0001_0000_0000"` |
+![RGB LEDs](images/schema1.png)
+![](images/diagram1.jpg)
+
+| **RGB LED** | **Artix-7 pin names** | **Red** | **Yellow** | **Green** |
+| :-: | :-: | :-: | :-: | :-: |
+| LD16 | N15, M16, R12 | `1,0,0` | `1,1,0` | `0,1,0` |
+| LD17 | N16, R11, G14 | `1,0,0` | `1,1,0` | `0,1,0` |
    
 ### 2)
-#### process p_cnt_up_down:
+#### Listing of VHDL code of sequential process p_traffic_fsm:
 ```vhdl
-  p_cnt_up_down : process(clk)
+ p_traffic_fsm : process(clk)
     begin
         if rising_edge(clk) then
-        
-            if (reset = '1') then               -- Synchronous reset
-                s_cnt_local <= (others => '0'); -- Clear all bits
+            if (reset = '1') then       -- Synchronous reset
+                s_state <= STOP1 ;      -- Set initial state
+                s_cnt   <= c_ZERO;      -- Clear all bits
 
-            elsif (en_i = '1') then       -- Test if counter is enabled
+            elsif (s_en = '1') then
+                -- Every 250 ms, CASE checks the value of the s_state 
+                -- variable and changes to the next state according 
+                -- to the delay value.
+                case s_state is
 
-            
-                -- TEST COUNTER DIRECTION HERE
-               if(cnt_up_i = '1') then
-            
-               s_cnt_local <= s_cnt_local + 1;
-               
-               else
-               
-               s_cnt_local <= s_cnt_local - 1;
-               end if;
+                    -- If the current state is STOP1, then wait 1 sec
+                    -- and move to the next GO_WAIT state.
+                    when STOP1 =>
+                        -- Count up to c_DELAY_1SEC
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            -- Move to the next state
+                            s_state <= WEST_GO;
+                            -- Reset local counter value
+                            s_cnt   <= c_ZERO;
+                        end if;
 
-            end if;
-        end if;
-    end process p_cnt_up_down;
+                    when WEST_GO =>
+                            if(s_cnt < c_DELAY_4SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= WEST_WAIT;
+                               s_cnt <= c_ZERO;
+                            end if;
+                    when WEST_WAIT =>
+                            if(s_cnt < c_DELAY_2SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= STOP2;
+                               s_cnt <= c_ZERO;
+                            end if;
+                    when STOP2 =>
+                            if(s_cnt < c_DELAY_1SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= SOUTH_GO;
+                               s_cnt <= c_ZERO;
+                            end if;
+                    when SOUTH_GO =>
+                            if(s_cnt < c_DELAY_4SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= SOUTH_WAIT;
+                               s_cnt <= c_ZERO;
+                            end if;
+                    when SOUTH_WAIT =>
+                            if(s_cnt < c_DELAY_2SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= STOP1;
+                               s_cnt <= c_ZERO;
+                            end if;
 
+                    -- It is a good programming practice to use the 
+                    -- OTHERS clause, even if all CASE choices have 
+                    -- been made. 
+                    when others =>
+                        s_state <= STOP1;
+
+                end case;
+            end if; -- Synchronous reset
+        end if; -- Rising edge
+    end process p_traffic_fsm;
 ```
-#### stimulus process p_tb_cnt_up_down:
+#### Listing of VHDL code of combinatorial process p_output_fsm:
 ```vhdl
-p_stimulus : process
+ p_output_fsm : process(s_state)
     begin
-        report "Stimulus process started" severity note;
-
-        -- Enable counting
-        s_en     <= '1';
-        
-        -- Change counter direction
-        s_cnt_up <= '1';
-        wait for 380 ns;
-        s_cnt_up <= '0';
-        wait for 220 ns;
-
-        -- Disable counting
-        s_en     <= '0';
-
-        report "Stimulus process finished" severity note;
-        wait;
-    end process p_stimulus;
-
+        case s_state is
+            when STOP1 =>
+                south_o <= "100";   -- Red (RGB = 100)
+                west_o  <= "100";   -- Red (RGB = 100)
+            when WEST_GO =>
+                south_o <= "100";   -- Red (RGB = 100)
+                west_o  <= "010";   -- green (RGB = 010)
+            when WEST_WAIT =>
+                south_o <= "100";   -- Red (RGB = 100)
+                west_o  <= "110";   -- yellow (RGB = 110)
+            when STOP2 =>
+                south_o <= "100";   -- Red (RGB = 100)
+                west_o  <= "100";   -- Red (RGB = 100)
+            when SOUTH_GO =>
+                south_o <= "010";   -- green (RGB = 010)
+                west_o  <= "100";   -- Red (RGB = 100)
+            when SOUTH_WAIT =>
+                south_o <= "110";   -- yellow (RGB = 110)
+                west_o  <= "100";   -- Red (RGB = 100)
+            when others =>
+                south_o <= "100";   -- Red
+                west_o  <= "100";   -- Red
+        end case;
+    end process p_output_fsm;
 ```
 
 #### Screenshot with simulated time waveforms:
-![](images/sim1.png)
-![](images/sim2.png)
-![](images/sim3.png)
+![](images/screen1.png)
+![](images/screen2.png)
+
 
 ### 3)
-#### top.vhd with all instantiations for the 4-bit bidirectional counter:
+
+| **Current state** | **no cars (00)** | **cars to West (01)** | **cars to South (10)** | **cars both directions (11)** | **Delay** |
+| :-- | :-: | :-: | :-: |
+| `STOP1`      | STOP1 | STOP1 | STOP1 | STOP1 | 1 sec |
+| `WEST_GO`    | WEST_GO | WEST_GO | WEST_WAIT | WEST_WAIT | 4 sec |
+| `WEST_WAIT`  | SOUTH_GO | SOUTH_GO | SOUTH_GO | SOUTH_GO | 2 sec |
+| `STOP2`      | STOP2 | STOP2 | STOP2 | STOP2 | 1 sec |
+| `SOUTH_GO`   | SOUTH_GO | SOUTH_WAIT | SOUTH_GO | SOUTH_WAIT | 4 sec |
+| `SOUTH_WAIT` | WEST_GO | WEST_GO | WEST_GO | WEST_GO | 2 sec |
+
+![](images/diagram2.jpg)
+
+#### Listing of VHDL code of sequential process p_smart_traffic_fsm:
 ```vhdl
--- Instance (copy) of clock_enable entity
-    clk_en0 : entity work.clock_enable
-        generic map(
-            --- WRITE YOUR CODE HERE
-            g_MAX => 100000000
-        )
-        port map(
-            --- WRITE YOUR CODE HERE
-            clk    => CLK100MHZ,
-            reset  => BTNC,
-            ce_o   => s_en
-        );
+ p_smart_traffic_fsm : process(clk)
+    begin
+        if rising_edge(clk) then
+            if (reset = '1') then       -- Synchronous reset
+                s_state <= STOP1 ;      -- Set initial state
+                s_cnt   <= c_ZERO;      -- Clear all bits
 
-    --------------------------------------------------------------------
-    -- Instance (copy) of cnt_up_down entity
-    bin_cnt0 : entity work.cnt_up_down
-        generic map(
-            --- WRITE YOUR CODE HERE
-            g_CNT_WIDTH => 4
-        )
-        port map(
-            --- WRITE YOUR CODE HERE
-            clk     => CLK100MHZ,
-            reset   => BTNC,
-            en_i    => s_en,
-            cnt_up_i=> SW(0),
-            cnt_o   => s_cnt
-        );
+            elsif (s_en = '1') then
+                -- Every 250 ms, CASE checks the value of the s_state 
+                -- variable and changes to the next state according 
+                -- to the delay value.
+                case s_state is
 
-    -- Display input value on LEDs
-    LED(3 downto 0) <= s_cnt;
+                    -- If the current state is STOP1, then wait 1 sec
+                    -- and move to the next GO_WAIT state.
+                    when STOP1 =>
+                        -- Count up to c_DELAY_1SEC
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            -- Move to the next state
+                            s_state <= WEST_GO;
+                            -- Reset local counter value
+                            s_cnt   <= c_ZERO;
+                        end if;
 
-    --------------------------------------------------------------------
-    -- Instance (copy) of hex_7seg entity
-    hex2seg : entity work.hex_7seg
-        port map(
-            hex_i    => s_cnt,
-            seg_o(6) => CA,
-            seg_o(5) => CB,
-            seg_o(4) => CC,
-            seg_o(3) => CD,
-            seg_o(2) => CE,
-            seg_o(1) => CF,
-            seg_o(0) => CG
-        );
+                    when WEST_GO =>
+                            if(s_cnt < c_DELAY_4SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               if((SW1='0' and SW2='0') or (SW1='0' and SW2='1')) then
+                               s_state <= WEST_GO;
+                               s_cnt <= c_ZERO;
+                               else
+                               s_state <= WEST_WAIT;
+                               end if;
+                            end if;
+                    when WEST_WAIT =>
+                            if(s_cnt < c_DELAY_2SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= STOP2;
+                               s_cnt <= c_ZERO;
+                            end if;
+                    when STOP2 =>
+                            if(s_cnt < c_DELAY_1SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= SOUTH_GO;
+                               s_cnt <= c_ZERO;
+                            end if;
+                    when SOUTH_GO =>
+                            if(s_cnt < c_DELAY_4SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               if((SW1='0' and SW2='0') or (SW1='1' and SW2='0')) then
+                               s_state <= SOUTH_GO;
+                               s_cnt <= c_ZERO;
+                               else
+                               s_state <= SOUTH_WAIT;
+                               end if; 
+                            end if;
+                    when SOUTH_WAIT =>
+                            if(s_cnt < c_DELAY_2SEC) then
+                               s_cnt <= s_cnt +1;
+                            else
+                               s_state <= STOP1;
+                               s_cnt <= c_ZERO;
+                            end if;
 
+                    -- It is a good programming practice to use the 
+                    -- OTHERS clause, even if all CASE choices have 
+                    -- been made. 
+                    when others =>
+                        s_state <= STOP1;
+
+                end case;
+            end if; -- Synchronous reset
+        end if; -- Rising edge
+    end process p_smart_traffic_fsm;
 ```
 
-#### Image of the top layer including both counters:
-![](images/blok2.png)
-![](images/blok1.png)
+#### Screenshot with simulated time waveforms:
+##### SW = 10:
+![](images/SW1.png)
+##### SW = 11:
+![](images/SW1SW2.png)
+##### SW = 01:
+![](images/SW2.png)
+##### SW = 00:
+![](images/SW00.png)
