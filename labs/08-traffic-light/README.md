@@ -9,7 +9,7 @@
 Figure with connection of RGB LEDs on Nexys A7 board
 
 ![RGB LEDs](images/schema1.png)
-![](images/diagram1.jpg)
+![](images/diagram1.png)
 
 | **RGB LED** | **Artix-7 pin names** | **Red** | **Yellow** | **Green** |
 | :-: | :-: | :-: | :-: | :-: |
@@ -138,7 +138,7 @@ Figure with connection of RGB LEDs on Nexys A7 board
 | `SOUTH_GO`   | SOUTH_GO | SOUTH_WAIT | SOUTH_GO | SOUTH_WAIT | 4 sec |
 | `SOUTH_WAIT` | WEST_GO | WEST_GO | WEST_GO | WEST_GO | 2 sec |
 
-![](images/diagram2.jpg)
+![](images/diagram2.png)
 
 #### Listing of VHDL code of sequential process p_smart_traffic_fsm:
 ```vhdl
