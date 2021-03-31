@@ -130,7 +130,7 @@ Figure with connection of RGB LEDs on Nexys A7 board
 ### 3)
 
 | **Current state** | **no cars (00)** | **cars to West (01)** | **cars to South (10)** | **cars both directions (11)** | **Delay** |
-| :-- | :-: | :-: | :-: |
+| :-- | :-: | :-: | :-: | :-: | :-: |
 | `STOP1`      | STOP1 | STOP1 | STOP1 | STOP1 | 1 sec |
 | `WEST_GO`    | WEST_GO | WEST_GO | WEST_WAIT | WEST_WAIT | 4 sec |
 | `WEST_WAIT`  | SOUTH_GO | SOUTH_GO | SOUTH_GO | SOUTH_GO | 2 sec |
