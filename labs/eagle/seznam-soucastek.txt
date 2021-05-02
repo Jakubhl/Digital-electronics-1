@@ -1,7 +1,0 @@
-Seznam součástek
-Označení Hodnota           Provedení
-R1-10    150R              SMD, 1206
-R11-15   10k               SMD, 1206
-DZ1      bargraf 10x LED   např. DC10EWA
-T1-3     2N7002            SOT23
-SG1      bzučák 3-16V=/6mA kulatý, do DPS, rozteč vývodů 7,5mm; Ø14x8mm
